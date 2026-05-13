@@ -1,0 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap");
+body {
+  font-family: "JetBrains Mono", monospace;
+}
+.glitch-green {
+  text-shadow: 0 0 10px rgba(45, 212, 191, 0.8);
+}
