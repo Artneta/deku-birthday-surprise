@@ -22,22 +22,20 @@ function revealSurprise() {
   const revealPage = document.getElementById("reveal-page");
   const overlay = document.getElementById("transition-overlay");
 
-  // 2. MUNCULKAN HUJAN KEPALA DEKU
   overlay.classList.remove("hidden");
-  const jumlahKepala = 50;
+
+  const jumlahKepala = 40;
 
   for (let j = 0; j < jumlahKepala; j++) {
     const deku = document.createElement("img");
-    deku.src = "assets/dekuchibi.jpeg"; // Perbaikan typo dari 'assests' ke 'assets'
+    deku.src = "assets/dekuchibi.jpeg";
     deku.classList.add("absolute", "animate-deku", "w-16", "h-16", "rounded-full");
 
-    // Acak posisi layar
     const posX = Math.random() * window.innerWidth;
     const posY = Math.random() * window.innerHeight;
     deku.style.left = `${posX}px`;
     deku.style.top = `${posY}px`;
 
-    // Delay acak biar estetik
     deku.style.animationDelay = `${Math.random() * 0.2}s`;
 
     overlay.appendChild(deku);
@@ -45,19 +43,18 @@ function revealSurprise() {
 
   terminalPage.classList.add("opacity-0");
 
-  // 3. PROSES PERGANTIAN HALAMAN (Sambil kepala Deku berterbangan)
+  // 3. PROSES PERGANTIAN HALAMAN UTAMA
   setTimeout(() => {
     terminalPage.classList.add("hidden");
     revealPage.classList.remove("hidden");
 
-    // Sembunyikan tirai hujan deku & bersihkan memorinya
     overlay.classList.add("hidden");
     overlay.innerHTML = "";
 
     setTimeout(() => {
       revealPage.classList.add("opacity-100");
     }, 50);
-  }, 1000); // Durasi transisi pas di tengah-tengah hujan Deku
+  }, 1000); // Kita persingkat jadi 1 detik biar pas ritmenya
 }
 
 window.onload = typeWriter;
