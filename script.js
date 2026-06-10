@@ -33,7 +33,7 @@ function revealSurprise() {
 
 window.onload = typeWriter;
 
-function jalankanTransisiDeku() {
+function revealSurprise() {
   const overlay = document.getElementById("transition-overlay");
   overlay.classList.remove("hidden"); // Tampilkan wadah transisi
 
@@ -42,7 +42,7 @@ function jalankanTransisiDeku() {
   for (let i = 0; i < jumlahKepala; i++) {
     // 1. Buat elemen gambar baru
     const deku = document.createElement("img");
-    deku.src = "gambar/kepala-deku.png"; // Sesuaikan dengan nama file foto deku kamu
+    deku.src = "assests/dekuchibi.jpeg"; // Sesuaikan dengan nama file foto deku kamu
     deku.classList.add("absolute", "animate-deku", "w-16", "h-16"); // Ukuran pakai Tailwind
 
     // 2. Acak posisinya di layar (Sumbu X dan Y)
