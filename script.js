@@ -36,7 +36,7 @@ function revealSurprise() {
     deku.style.left = `${posX}px`;
     deku.style.top = `${posY}px`;
 
-    deku.style.animationDelay = `${Math.random() * 0.2}s`;
+    deku.style.animationDelay = `${Math.random() * 0.1}s`;
 
     overlay.appendChild(deku);
   }
