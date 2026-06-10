@@ -6,20 +6,23 @@ body {
   text-shadow: 0 0 10px rgba(45, 212, 191, 0.8);
 }
 
+/* 1. Aturan Gerakan Animasi Kepala Deku */
 @keyframes popDeku {
   0% {
     transform: scale(0) rotate(0deg);
     opacity: 0;
   }
-  50% {
+  30% {
+    transform: scale(1.2) rotate(180deg); /* Efek membesar agak nge-pop */
     opacity: 1;
   }
   100% {
-    transform: scale(1) rotate(360deg);
+    transform: scale(1) rotate(360deg); /* Muter penuh lalu menghilang */
     opacity: 0;
   }
 }
 
+/* 2. Class yang Dipakai JavaScript untuk Menggerakkan Gambarnya */
 .animate-deku {
-  animation: popDeku 1s ease-in-out forwards;
+  animation: popDeku 1.2s ease-in-out forwards;
 }
