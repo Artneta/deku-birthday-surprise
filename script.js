@@ -24,7 +24,7 @@ function revealSurprise() {
 
   overlay.classList.remove("hidden");
 
-  const jumlahKepala = 40;
+  const jumlahKepala = 100;
 
   for (let j = 0; j < jumlahKepala; j++) {
     const deku = document.createElement("img");
