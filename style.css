@@ -6,25 +6,26 @@ body {
   text-shadow: 0 0 10px rgba(45, 212, 191, 0.8);
 }
 
-@keyframes popDeku {
-  0% { 
-    transform: scale(0) rotate(0deg); 
-    opacity: 0; 
+@keyframes animeTransition {
+  0% {
+    transform: scale(0);
+    opacity: 0;
   }
-  15% { 
-    transform: scale(1.1) rotate(90deg); 
-    opacity: 1; 
-  }
-  85% {
+  30% {
+    transform: scale(1.1); /* Agak lebih besar dari kotaknya biar gak ada celah */
     opacity: 1;
   }
-  100% { 
-    transform: scale(0.8) rotate(180deg); 
-    opacity: 0; 
+  70% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
   }
 }
 
-.animate-deku {
-  /* Durasi dibikin cepat (0.7 detik) biar perputarannya intens dan padat */
-  animation: popDeku 0.7s ease-out forwards; 
+.animate-anime-deku {
+  /* Cuma 0.6 detik, sangat cepat dan snappy khas anime */
+  animation: animeTransition 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
