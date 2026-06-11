@@ -62,13 +62,13 @@ function revealSurprise() {
   // 3. Terminal mulai menghilang tipis-tipis
   terminalPage.classList.add("opacity-0");
 
-  // 4. TIMING PINDAH HALAMAN (Sangat Cepat!)
-  // Total durasi sapuan grid berkisar 0.6 - 0.9 detik
+  // 4. TIMING PINDAH HALAMAN YANG BARU (Dipercepat & Di-singkronkan)
   setTimeout(() => {
+    // TEPAT saat layar ketutup rapat oleh ubin Deku, tukar halamannya instan!
     terminalPage.classList.add("hidden");
     revealPage.classList.remove("hidden");
 
-    // Matikan display grid & bersihkan layar
+    // Langsung matikan dan hancurkan ubin Deku seketika tanpa nunggu animasi mengecil
     overlay.style.display = "none";
     overlay.classList.add("hidden");
     overlay.innerHTML = "";
@@ -76,7 +76,7 @@ function revealSurprise() {
     setTimeout(() => {
       revealPage.classList.add("opacity-100");
     }, 50);
-  }, 800); // 0.8 detik langsung ganti halaman!
+  }, 650); // Angka 650ms ini adalah sweet spot pas ubin Deku lagi padat-padatnya!
 }
 
 window.onload = typeWriter;

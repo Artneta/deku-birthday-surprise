@@ -7,25 +7,23 @@ body {
 }
 
 @keyframes animeTransition {
-  0% {
-    transform: scale(0);
-    opacity: 0;
+  0% { 
+    transform: scale(0); 
+    opacity: 0; 
   }
-  30% {
-    transform: scale(1.1); /* Agak lebih besar dari kotaknya biar gak ada celah */
-    opacity: 1;
+  /* Detik ke-20 animasi, layar sudah tertutup rapat */
+  20% { 
+    transform: scale(1.1); 
+    opacity: 1; 
   }
-  70% {
+  /* Tahan posisi penuh ini sampai animasi selesai, jangan mengecil dulu! */
+  100% {
     transform: scale(1.1);
     opacity: 1;
-  }
-  100% {
-    transform: scale(0);
-    opacity: 0;
   }
 }
 
 .animate-anime-deku {
-  /* Cuma 0.6 detik, sangat cepat dan snappy khas anime */
-  animation: animeTransition 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  /* Kita naikkan durasinya sedikit jadi 0.9 detik biar menutupnya mantap */
+  animation: animeTransition 0.9s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
