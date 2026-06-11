@@ -1,3 +1,6 @@
+const dekuPreload = new Image();
+dekuPreload.src = "assets/dekuchibi.jpeg";
+
 const message = "> Subject Found: Mikaela";
 const typingElement = document.getElementById("typing-text");
 const nextBtn = document.getElementById("next-btn");
