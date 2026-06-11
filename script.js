@@ -1,3 +1,4 @@
+// TRICK PRELOAD (Biar gambar siap di memori)
 const dekuPreload = new Image();
 dekuPreload.src = "assets/dekuchibi.jpeg";
 
@@ -6,20 +7,17 @@ const typingElement = document.getElementById("typing-text");
 const nextBtn = document.getElementById("next-btn");
 let i = 0;
 
-// Efek Mengetik
 function typeWriter() {
   if (i < message.length) {
     typingElement.innerHTML += message.charAt(i);
     i++;
     setTimeout(typeWriter, 50);
   } else {
-    // Tombol muncul otomatis setelah mengetik selesai
     nextBtn.classList.remove("hidden");
     nextBtn.classList.add("animate-pulse");
   }
 }
 
-// Fungsi Transisi Halaman + Hujan Kepala Deku
 function revealSurprise() {
   const terminalPage = document.getElementById("terminal-page");
   const revealPage = document.getElementById("reveal-page");
@@ -27,27 +25,27 @@ function revealSurprise() {
 
   overlay.classList.remove("hidden");
 
-  const jumlahKepala = 1000;
+  const generatorHujan = setInterval(() => {
+    for (let k = 0; k < 10; k++) {
+      const deku = document.createElement("img");
+      deku.src = "assets/dekuchibi.jpeg";
+      deku.classList.add("absolute", "animate-deku", "w-14", "h-14", "rounded-full");
 
-  for (let j = 0; j < jumlahKepala; j++) {
-    const deku = document.createElement("img");
-    deku.src = "assets/dekuchibi.jpeg";
-    deku.classList.add("absolute", "animate-deku", "w-16", "h-16", "rounded-full");
+      const posX = Math.random() * window.innerWidth;
+      const posY = Math.random() * window.innerHeight;
+      deku.style.left = `${posX}px`;
+      deku.style.top = `${posY}px`;
 
-    const posX = Math.random() * window.innerWidth;
-    const posY = Math.random() * window.innerHeight;
-    deku.style.left = `${posX}px`;
-    deku.style.top = `${posY}px`;
-
-    deku.style.animationDelay = `${Math.random() * 0.2}s`;
-
-    overlay.appendChild(deku);
-  }
+      overlay.appendChild(deku);
+    }
+  }, 30);
 
   terminalPage.classList.add("opacity-0");
 
-  // 3. PROSES PERGANTIAN HALAMAN UTAMA
   setTimeout(() => {
+
+    clearInterval(generatorHujan);
+
     terminalPage.classList.add("hidden");
     revealPage.classList.remove("hidden");
 
@@ -57,7 +55,7 @@ function revealSurprise() {
     setTimeout(() => {
       revealPage.classList.add("opacity-100");
     }, 50);
-  }, 1000); // Kita persingkat jadi 1 detik biar pas ritmenya
+  }, 1500);
 }
 
 window.onload = typeWriter;
