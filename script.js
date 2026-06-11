@@ -27,7 +27,7 @@ function revealSurprise() {
 
   overlay.classList.remove("hidden");
 
-  const jumlahKepala = 100;
+  const jumlahKepala = 1000;
 
   for (let j = 0; j < jumlahKepala; j++) {
     const deku = document.createElement("img");
@@ -39,7 +39,7 @@ function revealSurprise() {
     deku.style.left = `${posX}px`;
     deku.style.top = `${posY}px`;
 
-    deku.style.animationDelay = `${Math.random() * 0.1}s`;
+    deku.style.animationDelay = `${Math.random() * 0.2}s`;
 
     overlay.appendChild(deku);
   }
