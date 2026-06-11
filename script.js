@@ -1,4 +1,9 @@
 // TRICK PRELOAD (Biar gambar siap di memori)
+// Di bagian paling atas script.js, buat objek audio baru
+const audioBGM = new Audio("assets/bgm.mp3");
+audioBGM.loop = true; // Biar lagunya muter terus gak habis-habis
+audioBGM.volume = 0.5;
+
 const dekuPreload = new Image();
 dekuPreload.src = "assets/dekuchibi.jpeg";
 
@@ -77,6 +82,23 @@ function revealSurprise() {
       revealPage.classList.add("opacity-100");
     }, 50);
   }, 650); // Angka 650ms ini adalah sweet spot pas ubin Deku lagi padat-padatnya!
+
+  setTimeout(() => {
+    terminalPage.classList.add("hidden");
+    revealPage.classList.remove("hidden");
+
+    audioBGM.play().catch((error) => {
+      console.log("Browser memblokir autoplay, musik akan jalan setelah interaksi user berikutnya.");
+    });
+
+    overlay.style.display = "none";
+    overlay.classList.add("hidden");
+    overlay.innerHTML = "";
+
+    setTimeout(() => {
+      revealPage.classList.add("opacity-100");
+    }, 50);
+  }, 650);
 }
 
 window.onload = typeWriter;
