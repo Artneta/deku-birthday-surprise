@@ -28,77 +28,56 @@ function revealSurprise() {
   const revealPage = document.getElementById("reveal-page");
   const overlay = document.getElementById("transition-overlay");
 
-  // 1. Set overlay jadi Flex/Grid rapi yang memenuhi layar
+  // 1. Bersihkan overlay dan aktifkan layarnya
+  overlay.innerHTML = "";
   overlay.classList.remove("hidden");
-  overlay.style.display = "grid";
+  overlay.className = "fixed inset-0 z-50 pointer-events-none"; // Reset class awal
 
-  // Tentukan ukuran per kotak (misal 80px x 80px biar pas di layar)
-  const ukuranKotak = 80;
-  const kolom = Math.ceil(window.innerWidth / ukuranKotak);
-  const baris = Math.ceil(window.innerHeight / ukuranKotak);
+  // 2. Buat Elemen Tirai Diagonal Anime
+  const tirai = document.createElement("div");
+  tirai.classList.add("tirai-anime");
+  overlay.appendChild(tirai);
 
-  // Buat grid layout lewat JS agar presisi sesuai layar
-  overlay.style.gridTemplateColumns = `repeat(${kolom}, 1fr)`;
-  overlay.style.gridTemplateRows = `repeat(${baris}, 1fr)`;
+  // 3. GENERATOR PETIR ONE FOR ALL (Muncul cepat secara acak)
+  const jumlahPetir = 15;
+  for (let j = 0; j < jumlahPetir; j++) {
+    const petir = document.createElement("div");
+    petir.classList.add("petir-ofa");
 
-  // 2. Loop membuat kepala Deku mengisi setiap kotak (TIDAK ACAK, PASTI RAPI)
-  for (let r = 0; r < baris; r++) {
-    for (let c = 0; c < kolom; c++) {
-      const kotakKecil = document.createElement("div");
-      kotakKecil.classList.add("relative", "flex", "items-center", "justify-center", "w-full", "h-full");
+    // Acak posisi petir di layar
+    petir.style.left = `${Math.random() * 90}%`;
+    petir.style.top = `${Math.random() * 90}%`;
 
-      const deku = document.createElement("img");
-      deku.src = "assets/dekuchibi.jpeg";
-      deku.classList.add("animate-anime-deku", "object-cover");
+    // Beri rotasi acak agar petirnya menyambar ke segala arah
+    petir.style.transform = `rotate(${Math.random() * 360}deg)`;
 
-      // Ukuran gambar disesuaikan agar menutup penuh kotak jalurnya
-      deku.style.width = "105%";
-      deku.style.height = "105%";
+    // Delay acak kilatannya (sangat tipis antar petir)
+    petir.style.animationDelay = `${Math.random() * 0.4}s`;
 
-      // EFEK OMBAK ANIME: Delay dihitung berdasarkan posisi kolom dan baris
-      // Jadi nanti dia munculnya berurutan menyapu layar dari pojok kiri atas ke kanan bawah
-      deku.style.animationDelay = `${(c + r) * 0.03}s`;
-
-      kotakKecil.appendChild(deku);
-      overlay.appendChild(kotakKecil);
-    }
+    overlay.appendChild(petir);
   }
 
-  // 3. Terminal mulai menghilang tipis-tipis
+  // 4. Efek Memudar Terminal bawaanmu
   terminalPage.classList.add("opacity-0");
 
-  // 4. TIMING PINDAH HALAMAN YANG BARU (Dipercepat & Di-singkronkan)
-  setTimeout(() => {
-    // TEPAT saat layar ketutup rapat oleh ubin Deku, tukar halamannya instan!
-    terminalPage.classList.add("hidden");
-    revealPage.classList.remove("hidden");
-
-    // Langsung matikan dan hancurkan ubin Deku seketika tanpa nunggu animasi mengecil
-    overlay.style.display = "none";
-    overlay.classList.add("hidden");
-    overlay.innerHTML = "";
-
-    setTimeout(() => {
-      revealPage.classList.add("opacity-100");
-    }, 50);
-  }, 650); // Angka 650ms ini adalah sweet spot pas ubin Deku lagi padat-padatnya!
-
+  // 5. TIMING SWITCH HALAMAN (Tepat saat tirai menutup layar penuh)
   setTimeout(() => {
     terminalPage.classList.add("hidden");
     revealPage.classList.remove("hidden");
 
-    audioBGM.play().catch((error) => {
-      console.log("Browser memblokir autoplay, musik akan jalan setelah interaksi user berikutnya.");
-    });
-
-    overlay.style.display = "none";
-    overlay.classList.add("hidden");
-    overlay.innerHTML = "";
+    // Aktifkan BGM kamu di sini nanti jika sudah siap filenya
+    // audioBGM.play().catch(e => console.log(e));
 
     setTimeout(() => {
       revealPage.classList.add("opacity-100");
     }, 50);
-  }, 650);
+  }, 450); // 450ms adalah titik puncak saat tirai menyapu tengah layar
+
+  // 6. Bersihkan total panggung transisi setelah selesai berganti halaman
+  setTimeout(() => {
+    overlay.classList.add("hidden");
+    overlay.innerHTML = "";
+  }, 1200); // Sesuai durasi total animasi tirai (1.2s)
 }
 
 window.onload = typeWriter;

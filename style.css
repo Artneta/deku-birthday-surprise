@@ -6,24 +6,42 @@ body {
   text-shadow: 0 0 10px rgba(45, 212, 191, 0.8);
 }
 
-@keyframes animeTransition {
-  0% { 
-    transform: scale(0); 
-    opacity: 0; 
-  }
-  /* Detik ke-20 animasi, layar sudah tertutup rapat */
-  20% { 
-    transform: scale(1.1); 
-    opacity: 1; 
-  }
-  /* Tahan posisi penuh ini sampai animasi selesai, jangan mengecil dulu! */
-  100% {
-    transform: scale(1.1);
-    opacity: 1;
-  }
+/* --- ANIMASI 1: TIRAI DIAGONAL ANIME --- */
+@keyframes sapuanTirai {
+  0% { transform: translateX(-100%) skewX(-15deg); }
+  35%, 65% { transform: translateX(0%) skewX(-15deg); } /* Menutup layar penuh di tengah */
+  100% { transform: translateX(100%) skewX(-15deg); }
 }
 
-.animate-anime-deku {
-  /* Kita naikkan durasinya sedikit jadi 0.9 detik biar menutupnya mantap */
-  animation: animeTransition 0.9s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+.tirai-anime {
+  position: fixed;
+  top: 0;
+  left: -20%;
+  width: 140%;
+  height: 100%;
+  background: linear-gradient(135deg, #0d1b2a 0%, #14b8a6 50%, #050b14 100%);
+  z-index: 40;
+  transform: translateX(-100%) skewX(-15deg);
+  animation: sapuanTirai 1.2s cubic-bezier(0.86, 0, 0.07, 1) forwards;
+}
+
+/* --- ANIMASI 2: PETIR ONE FOR ALL --- */
+@keyframes kilatPetir {
+  0% { opacity: 0; transform: scale(0.6) rotate(0deg); filter: drop-shadow(0 0 0px #22c55e); }
+  10%, 30%, 50% { opacity: 1; transform: scale(1.2) rotate(5deg); filter: drop-shadow(0 0 15px #22c55e); }
+  20%, 40%, 60% { opacity: 0.5; transform: scale(0.9) rotate(-5deg); }
+  70% { opacity: 1; transform: scale(1.5) rotate(0deg); filter: drop-shadow(0 0 25px #14b8a6); }
+  100% { opacity: 0; transform: scale(2); }
+}
+
+.petir-ofa {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="%2322c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>') no-repeat center;
+  background-size: contain;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0;
+  animation: kilatPetir 0.6s ease-in-out forwards;
 }
