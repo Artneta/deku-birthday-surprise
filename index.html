@@ -50,6 +50,50 @@
 
     <div id="transition-overlay" class="fixed inset-0 z-50 pointer-events-none hidden"></div>
 
+    <!-- ==========================================
+     MINI SPOTIFY PLAYER (MELAYANG & BISA DIGESER)
+     ========================================== -->
+    <div id="music-player" class="hidden fixed bottom-6 right-6 w-64 bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-2xl z-40 select-none cursor-grab active:cursor-grabbing transition-opacity duration-500 opacity-0">
+      <!-- Gambar Cover (Bisa diisi gambar Deku / Mikaela) -->
+      <div class="w-full aspect-square bg-slate-800 rounded-xl overflow-hidden mb-3 relative group">
+        <img id="player-cover" src="assets/dekuchibi.jpeg" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+          <span class="text-xs text-slate-400 font-mono">Drag to move</span>
+        </div>
+      </div>
+
+      <!-- Info Lagu -->
+      <div class="mb-3">
+        <h4 id="player-title" class="text-white font-bold text-sm truncate">Hero Too (Acoustic)</h4>
+        <p id="player-artist" class="text-slate-400 text-xs truncate">My Hero Academia</p>
+      </div>
+
+      <!-- Progress Bar Mini -->
+      <div class="w-full bg-slate-800 h-1 rounded-full overflow-hidden mb-4">
+        <div id="player-progress" class="bg-teal-500 h-full w-0 transition-all duration-300"></div>
+      </div>
+
+      <!-- Tombol Navigasi Kontrol (Mirip image_266f4b.png) -->
+      <div class="flex items-center justify-between px-4">
+        <!-- Prev -->
+        <button onclick="prevTrack()" class="text-slate-400 hover:text-teal-400 transition">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z" /></svg>
+        </button>
+
+        <!-- Play / Pause -->
+        <button onclick="togglePlay()" class="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:scale-105 transition shadow-lg">
+          <div id="play-icon">
+            <svg class="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+          </div>
+        </button>
+
+        <!-- Next -->
+        <button onclick="nextTrack()" class="text-slate-400 hover:text-teal-400 transition">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6zm9-12v12h2V6z" /></svg>
+        </button>
+      </div>
+    </div>
+
     <script src="script.js"></script>
   </body>
 </html>
