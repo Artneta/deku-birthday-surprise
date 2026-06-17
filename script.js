@@ -152,43 +152,63 @@ function revealSurprise() {
 }
 
 // ==========================================
-// FITUR DRAG (Agar Kotak Bisa Digeser-geser)
+// FITUR DRAG SEMPURNA (ANTI-LONCAT)
 // ==========================================
 const player = document.getElementById("music-player");
 let isDragging = false;
-let currentX, currentY, initialX, initialY;
+let currentX = 0;
+let currentY = 0;
+let initialX;
+let initialY;
+let xOffset = 0;
+let yOffset = 0;
 
 player.addEventListener("mousedown", dragStart);
-document.addEventListener("mousemove", drag, { passive: true });
+document.addEventListener("mousemove", drag);
 document.addEventListener("mouseup", dragEnd);
+
 player.addEventListener("touchstart", dragStart, { passive: true });
-document.addEventListener("touchmove", drag, { passive: true });
+document.addEventListener("touchmove", drag, { passive: false });
 document.addEventListener("touchend", dragEnd);
 
 function dragStart(e) {
-  if (e.target.closest("button")) return; // Biar tombol play/next tetep bisa diklik
-  initialX = e.type === "touchstart" ? e.touches[0].clientX - currentX : e.clientX - currentX;
-  initialY = e.type === "touchstart" ? e.touches[0].clientY - currentY : e.clientY - currentY;
+  // Biar tombol di dalam player tetep bisa diklik normal
+  if (e.target.closest('button')) return; 
+
+  if (e.type === "touchstart") {
+    initialX = e.touches[0].clientX - xOffset;
+    initialY = e.touches[0].clientY - yOffset;
+  } else {
+    initialX = e.clientX - xOffset;
+    initialY = e.clientY - yOffset;
+  }
   isDragging = true;
 }
 
 function drag(e) {
   if (!isDragging) return;
-  const clientX = e.type === "touchmove" ? e.touches[0].clientX : e.clientX;
-  const clientY = e.type === "touchmove" ? e.touches[0].clientY : e.clientY;
+  
+  // Mencegah layar HP ikutan kescroll pas kotaknya lagi ditarik
+  if (e.type === "touchmove") e.preventDefault(); 
 
-  currentX = clientX - initialX;
-  currentY = clientY - initialY;
+  if (e.type === "touchmove") {
+    currentX = e.touches[0].clientX - initialX;
+    currentY = e.touches[0].clientY - initialY;
+  } else {
+    currentX = e.clientX - initialX;
+    currentY = e.clientY - initialY;
+  }
 
-  // Gerakkan kotaknya memanfaatkan transform css
+  xOffset = currentX;
+  yOffset = currentY;
+
+  // Cukup gerakkan lewat translate agar smooth dan nempel presisi di kursor
   player.style.transform = `translate(${currentX}px, ${currentY}px)`;
-  player.style.bottom = "auto";
-  player.style.right = "auto";
-  player.style.left = `${clientX - 128}px`; // Sesuai setengah lebar w-64 (128px)
-  player.style.top = `${clientY - 20}px`;
 }
 
 function dragEnd() {
+  initialX = currentX;
+  initialY = currentY;
   isDragging = false;
 }
 
