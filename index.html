@@ -31,7 +31,6 @@
          2. HALAMAN UTAMA (REVEAL PAGE)
          ========================================== -->
     <div id="reveal-page" class="hidden opacity-0 w-full max-w-5xl transition-opacity duration-1000 mx-auto">
-      
       <!-- BABAK 1: GRID FOTO UTAMA -->
       <div id="photo-stage" class="text-center transition-all duration-700">
         <h1 class="text-teal-400 text-5xl md:text-7xl font-bold mb-2 italic tracking-wider">PLUS ULTRA!</h1>
@@ -39,37 +38,36 @@
 
         <!-- Grid 3 Kolom Sesuai Request -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto items-center">
-          
           <!-- Kolom 1: Foto Tercantik/Terlucu Mikaela -->
           <div class="aspect-[3/4] bg-slate-900 border-2 border-slate-800 rounded-2xl overflow-hidden shadow-xl hover:border-teal-500 transition duration-500">
-            <img src="assets/mikaela.jpg" class="w-full h-full object-cover" alt="Mikaela">
+            <img src="assets/mika.jpeg" class="w-full h-full object-cover" alt="Mikaela" />
           </div>
 
           <!-- Kolom 2: Deku Bawa Kue Ulang Tahun -->
           <div class="aspect-square flex items-center justify-center p-4 drop-shadow-[0_0_20px_rgba(20,184,166,0.2)] animate-bounce duration-[3000ms]">
-            <img src="assets/dekukue.png" class="w-full h-full object-contain" alt="Deku Cake">
+            <img src="assets/579-5797391_izuku-midoriya-hd-png-download.png" class="w-full h-full object-contain" alt="Deku Cake" />
           </div>
 
           <!-- Kolom 3: GIF Estetik Pendukung -->
           <div class="aspect-[3/4] bg-slate-900 border-2 border-slate-800 rounded-2xl overflow-hidden shadow-xl hover:border-teal-500 transition duration-500">
-            <img src="assets/aesthetic.gif" class="w-full h-full object-cover" alt="Aesthetic Animation">
+            <img src="assets/Mesmerizing Digital Art GIF by Bor.gif" class="w-full h-full object-cover" alt="Aesthetic Animation" />
           </div>
         </div>
 
         <!-- Tombol Rahasia Menuju Surat -->
-        <button onclick="openSecretLetter()" class="mt-12 px-8 py-4 bg-gradient-to-r from-teal-600 to-emerald-600 text-white rounded-full font-bold tracking-widest uppercase hover:scale-105 transition-all duration-300 shadow-lg shadow-teal-900/40">
+        <button
+          onclick="openSecretLetter()"
+          class="mt-12 px-8 py-4 bg-gradient-to-r from-teal-600 to-emerald-600 text-white rounded-full font-bold tracking-widest uppercase hover:scale-105 transition-all duration-300 shadow-lg shadow-teal-900/40"
+        >
           📩 Open Secret Letter
         </button>
       </div>
 
       <!-- BABAK 2: KOTAK SURAT & AUDIO AI (MUNCUL SETELAH TOMBOL DIKLIK) -->
       <div id="letter-stage" class="hidden opacity-0 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto items-center mt-6">
-        
         <!-- Sisi Kiri: Surat Ucapan dengan Efek Glassmorphism Mewah -->
         <div class="bg-slate-900/80 border border-teal-500/30 rounded-3xl p-8 backdrop-blur-md shadow-2xl h-[400px] overflow-y-auto">
-          <h3 class="text-2xl text-teal-400 font-bold mb-4 border-b border-slate-800 pb-2 flex items-center gap-2">
-            Dear Mikaela, 📝
-          </h3>
+          <h3 class="text-2xl text-teal-400 font-bold mb-4 border-b border-slate-800 pb-2 flex items-center gap-2">Dear Mikaela, 📝</h3>
           <div id="letter-text" class="text-slate-300 space-y-4 leading-relaxed font-mono text-sm md:text-base">
             <!-- Teks ini nanti bisa kita biarkan statis atau muncul pakai efek mengetik baru -->
             <p>Selamat ulang tahun yang luar biasa untuk orang yang paling berharga!</p>
@@ -82,13 +80,11 @@
         <!-- Sisi Kanan: GIF Deku Lagi Baca Surat/Buku -->
         <div class="flex flex-col items-center justify-center p-4">
           <div class="w-64 h-64 bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
-            <img src="assets/dekureading.gif" class="w-full h-full object-cover" alt="Deku Reading">
+            <img src="assets/dekureading.gif" class="w-full h-full object-cover" alt="Deku Reading" />
           </div>
           <p class="mt-4 text-xs text-slate-500 italic animate-pulse">🔊 Deku is reading the letter for you...</p>
         </div>
-
       </div>
-
     </div>
 
     <div id="transition-overlay" class="fixed inset-0 z-50 pointer-events-none hidden"></div>
