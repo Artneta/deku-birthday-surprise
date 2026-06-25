@@ -27,7 +27,7 @@ const currentAudio = new Audio();
 currentAudio.volume = 0.4;
 let isPlaying = false;
 
-const message = "> Subject Found: Mikaela";
+const message = "> Subject Found: Carlos Sainz Vázquez de Castro";
 const typingElement = document.getElementById("typing-text");
 const nextBtn = document.getElementById("next-btn");
 let i = 0;
