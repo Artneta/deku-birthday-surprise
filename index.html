@@ -28,61 +28,44 @@
     </div>
 
     <!-- ==========================================
-         2. HALAMAN UTAMA (REVEAL PAGE)
+         2. HALAMAN UTAMA (REVEAL PAGE) - VERSI SKETSA
          ========================================== -->
-    <div id="reveal-page" class="hidden opacity-0 w-full max-w-5xl transition-opacity duration-1000 mx-auto">
-      <!-- BABAK 1: GRID FOTO UTAMA -->
-      <div id="photo-stage" class="text-center transition-all duration-700">
-        <h1 class="text-teal-400 text-5xl md:text-7xl font-bold mb-2 italic tracking-wider">PLUS ULTRA!</h1>
-        <p class="text-xl text-slate-400 mb-10">Happy Birthday to my favorite hero, <span class="text-teal-400 font-bold">Mikaela</span> ✨</p>
-
-        <!-- Grid 3 Kolom Sesuai Request -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto items-center">
-          <!-- Kolom 1: Foto Tercantik/Terlucu Mikaela -->
-          <div class="aspect-[3/4] bg-slate-900 border-2 border-slate-800 rounded-2xl overflow-hidden shadow-xl hover:border-teal-500 transition duration-500">
-            <img src="assets/Mika.jpeg" class="w-full h-full object-cover" alt="Mikaela" />
-          </div>
-
-          <!-- Kolom 2: Deku Bawa Kue Ulang Tahun -->
-          <div class="aspect-square flex items-center justify-center p-4 drop-shadow-[0_0_20px_rgba(20,184,166,0.2)] animate-bounce duration-[3000ms]">
-            <img src="assets/579-5797391_izuku-midoriya-hd-png-download.png" class="w-full h-full object-contain" alt="Deku Cake" />
-          </div>
-
-          <!-- Kolom 3: GIF Estetik Pendukung -->
-          <div class="aspect-[3/4] bg-slate-900 border-2 border-slate-800 rounded-2xl overflow-hidden shadow-xl hover:border-teal-500 transition duration-500">
-            <img src="assets/Mesmerizing Digital Art GIF by Bor.gif" class="w-full h-full object-cover" alt="Aesthetic Animation" />
+    <div id="reveal-page" class="hidden opacity-0 w-full min-h-screen flex items-center justify-center transition-opacity duration-1000 relative px-4 md:px-10 overflow-hidden">
+      <!-- PANGGUNG UTAMA (Flexbox / Grid Responsif) -->
+      <div class="w-full max-w-6xl flex flex-col md:flex-row items-center justify-center gap-8 md:gap-4 relative z-10 my-auto">
+        <!-- ELEMEN 1: SISI KIRI ("dia" - MIKAELA) -->
+        <div class="w-48 h-64 md:w-60 md:h-80 bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl transition duration-500 hover:scale-105 order-2 md:order-1 flex-shrink-0 relative">
+          <img src="assets/mikaela.jpg" class="w-full h-full object-cover" alt="Mikaela" />
+          <div class="absolute bottom-2 left-0 right-0 text-center">
+            <span class="bg-slate-950/80 text-teal-400 font-mono text-xs px-3 py-1 rounded-full border border-teal-500/20">The Hero: Mikaela</span>
           </div>
         </div>
 
-        <!-- Tombol Rahasia Menuju Surat -->
-        <button
-          onclick="openSecretLetter()"
-          class="mt-12 px-8 py-4 bg-gradient-to-r from-teal-600 to-emerald-600 text-white rounded-full font-bold tracking-widest uppercase hover:scale-105 transition-all duration-300 shadow-lg shadow-teal-900/40"
+        <!-- ELEMEN 2: DI TENGAH (KOTAK PAPAN UCAPAN BESAR) -->
+        <div
+          class="w-full max-w-md bg-slate-900/90 border-2 border-teal-500/40 rounded-3xl p-6 md:p-8 backdrop-blur-md shadow-[0_0_35px_rgba(20,184,166,0.15)] order-1 md:order-2 flex-grow mx-2 relative min-h-[250px] flex flex-col justify-center"
         >
-          📩 Open Secret Letter
-        </button>
-      </div>
+          <!-- Efek Hiasan Sudut Papan Pahlawan -->
+          <div class="absolute -top-1 -left-1 w-4 h-4 border-t-2 border-l-2 border-teal-400"></div>
+          <div class="absolute -bottom-1 -right-1 w-4 h-4 border-b-2 border-r-2 border-teal-400"></div>
 
-      <!-- BABAK 2: KOTAK SURAT & AUDIO AI (MUNCUL SETELAH TOMBOL DIKLIK) -->
-      <div id="letter-stage" class="hidden opacity-0 grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto items-center mt-6">
-        <!-- Sisi Kiri: Surat Ucapan dengan Efek Glassmorphism Mewah -->
-        <div class="bg-slate-900/80 border border-teal-500/30 rounded-3xl p-8 backdrop-blur-md shadow-2xl h-[400px] overflow-y-auto">
-          <h3 class="text-2xl text-teal-400 font-bold mb-4 border-b border-slate-800 pb-2 flex items-center gap-2">Dear Mikaela, 📝</h3>
-          <div id="letter-text" class="text-slate-300 space-y-4 leading-relaxed font-mono text-sm md:text-base">
-            <!-- Teks ini nanti bisa kita biarkan statis atau muncul pakai efek mengetik baru -->
-            <p>Selamat ulang tahun yang luar biasa untuk orang yang paling berharga!</p>
-            <p>Sama seperti Deku yang gak pernah menyerah untuk jadi pahlawan nomor satu, kamu juga selalu jadi pahlawan terbaik yang bikin hari-hariku jauh lebih cerah.</p>
-            <p>Terima kasih sudah lahir ke dunia ini dan mengukir banyak cerita indah. Semoga di usia yang baru ini, semua impianmu tercapai, selalu diberikan kebahagiaan, dan semangat Plus Ultra-mu gak pernah padam! 💚</p>
-            <p class="text-right text-teal-400 font-bold mt-6">- Your Hero</p>
+          <h1 class="text-center text-teal-400 text-3xl md:text-5xl font-black italic tracking-wider mb-4 filter drop-shadow-[0_0_10px_rgba(20,184,166,0.5)]">PLUS ULTRA!</h1>
+
+          <!-- Tempat Teks Ucapan Selamat Ulang Tahun Dari Deku -->
+          <div class="text-center text-slate-200 font-mono text-sm md:text-base leading-relaxed space-y-2">
+            <p class="text-teal-300 font-bold text-lg mb-2">🎉 Happy Birthday! 🎉</p>
+            <p>"Selamat ulang tahun untuk pahlawan terfavoritku, Mikaela! Tetaplah bersinar dan melangkah maju melampaui batas batasmu!"</p>
+            <p class="text-xs text-emerald-400 font-bold mt-4 animate-pulse">#GoBeyond #PlusUltra</p>
           </div>
         </div>
 
-        <!-- Sisi Kanan: GIF Deku Lagi Baca Surat/Buku -->
-        <div class="flex flex-col items-center justify-center p-4">
-          <div class="w-64 h-64 bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl">
-            <img src="assets/dekureading.gif" class="w-full h-full object-cover" alt="Deku Reading" />
-          </div>
-          <p class="mt-4 text-xs text-slate-500 italic animate-pulse">🔊 Deku is reading the letter for you...</p>
+        <!-- ELEMEN 3: SISI KANAN ("deku" - MENGAMBANG TANPA BACKGROUND) -->
+        <div class="w-56 h-64 md:w-72 md:h-80 flex items-center justify-center order-3 flex-shrink-0 relative group">
+          <!-- Efek Aura Energi Hijau di Belakang Deku -->
+          <div class="absolute w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl group-hover:bg-emerald-500/20 transition duration-500"></div>
+
+          <!-- Pastikan dekukue.png sudah di-remove.bg ya biar transparan menyatu -->
+          <img src="assets/dekukue.png" class="w-full h-full object-contain relative z-10 filter drop-shadow-[0_0_20px_rgba(34,197,94,0.4)] animate-[bounce_4s_ease-in-out_infinite]" alt="Deku" />
         </div>
       </div>
     </div>
