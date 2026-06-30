@@ -30,44 +30,46 @@
     <!-- ==========================================
          2. HALAMAN UTAMA (REVEAL PAGE) - VERSI SKETSA
          ========================================== -->
-    <div id="reveal-page" class="hidden opacity-0 w-full min-h-screen flex items-center justify-center transition-opacity duration-1000 relative px-4 md:px-10 overflow-hidden">
-      <!-- PANGGUNG UTAMA (Flexbox / Grid Responsif) -->
-      <div class="w-full max-w-6xl flex flex-col md:flex-row items-center justify-center gap-8 md:gap-4 relative z-10 my-auto">
-        <!-- ELEMEN 1: SISI KIRI ("dia" - MIKAELA) -->
-        <div class="w-48 h-64 md:w-60 md:h-80 bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl transition duration-500 hover:scale-105 order-2 md:order-1 flex-shrink-0 relative">
-          <img src="assets/mikaela.jpg" class="w-full h-full object-cover" alt="Mikaela" />
-          <div class="absolute bottom-2 left-0 right-0 text-center">
-            <span class="bg-slate-950/80 text-teal-400 font-mono text-xs px-3 py-1 rounded-full border border-teal-500/20">The Hero: Mikaela</span>
-          </div>
-        </div>
-
-        <!-- ELEMEN 2: DI TENGAH (KOTAK PAPAN UCAPAN BESAR) -->
-        <div
-          class="w-full max-w-md bg-slate-900/90 border-2 border-teal-500/40 rounded-3xl p-6 md:p-8 backdrop-blur-md shadow-[0_0_35px_rgba(20,184,166,0.15)] order-1 md:order-2 flex-grow mx-2 relative min-h-[250px] flex flex-col justify-center"
-        >
-          <!-- Efek Hiasan Sudut Papan Pahlawan -->
-          <div class="absolute -top-1 -left-1 w-4 h-4 border-t-2 border-l-2 border-teal-400"></div>
-          <div class="absolute -bottom-1 -right-1 w-4 h-4 border-b-2 border-r-2 border-teal-400"></div>
-
-          <h1 class="text-center text-teal-400 text-3xl md:text-5xl font-black italic tracking-wider mb-4 filter drop-shadow-[0_0_10px_rgba(20,184,166,0.5)]">PLUS ULTRA!</h1>
-
-          <!-- Tempat Teks Ucapan Selamat Ulang Tahun Dari Deku -->
-          <div class="text-center text-slate-200 font-mono text-sm md:text-base leading-relaxed space-y-2">
-            <p class="text-teal-300 font-bold text-lg mb-2">🎉 Happy Birthday! 🎉</p>
-            <p>"Selamat ulang tahun untuk pahlawan terfavoritku, Mikaela! Tetaplah bersinar dan melangkah maju melampaui batas batasmu!"</p>
-            <p class="text-xs text-emerald-400 font-bold mt-4 animate-pulse">#GoBeyond #PlusUltra</p>
-          </div>
-        </div>
-
-        <!-- ELEMEN 3: SISI KANAN ("deku" - MENGAMBANG TANPA BACKGROUND) -->
-        <div class="w-56 h-64 md:w-72 md:h-80 flex items-center justify-center order-3 flex-shrink-0 relative group">
-          <!-- Efek Aura Energi Hijau di Belakang Deku -->
-          <div class="absolute w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl group-hover:bg-emerald-500/20 transition duration-500"></div>
-
-          <!-- Pastikan dekukue.png sudah di-remove.bg ya biar transparan menyatu -->
-          <img src="assets/dekukue.png" class="w-full h-full object-contain relative z-10 filter drop-shadow-[0_0_20px_rgba(34,197,94,0.4)] animate-[bounce_4s_ease-in-out_infinite]" alt="Deku" />
-        </div>
+    <div id="reveal-page" class="hidden opacity-0 w-full max-w-6xl min-h-[80vh] flex flex-col justify-center items-center transition-opacity duration-1000 mx-auto px-4 relative">
+      
+      <!-- HEADER ATAS (Biar tetep tau ini acara apa) -->
+      <div class="text-center mb-6 z-10">
+        <h1 class="text-teal-400 text-4xl md:text-6xl font-black italic tracking-wider filter drop-shadow-[0_0_15px_rgba(20,184,166,0.6)] animate-pulse">PLUS ULTRA!</h1>
       </div>
+
+      <!-- PANGGUNG UTAMA (Mikaela - Papan Ucapan - Deku) -->
+      <div class="w-full flex flex-col md:flex-row items-center justify-center gap-6 relative z-10">
+        
+        <!-- SISI KIRI: FOTO MIKAELA ("DIA") -->
+        <div class="w-48 md:w-64 aspect-[3/4] bg-slate-950 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl transition duration-500 hover:border-teal-500 hover:scale-105 transform origin-right">
+          <img src="assets/mikaela.jpg" class="w-full h-full object-cover" alt="Mikaela">
+        </div>
+
+        <!-- SISI TENGAH: PAPAN UCAPAN BESAR -->
+        <div class="w-full max-w-lg bg-slate-900/90 border-2 border-teal-500/40 rounded-3xl p-6 md:p-8 backdrop-blur-md shadow-[0_0_40px_rgba(20,184,166,0.15)] h-[350px] md:h-[400px] flex flex-col justify-between overflow-y-auto">
+          <div>
+            <h3 class="text-xl md:text-2xl text-teal-400 font-bold mb-4 border-b border-slate-800 pb-2 flex items-center gap-2">
+              🎉 Happy Birthday Mikaela!
+            </h3>
+            <div id="letter-text" class="text-slate-300 space-y-4 leading-relaxed font-mono text-xs md:text-sm">
+              <p>Selamat ulang tahun untuk sosok hero paling berharga! 💚</p>
+              <p>Sama seperti Deku yang berjuang melampaui batas dengan semangat *Plus Ultra*, kamu juga selalu jadi pahlawan terbaik yang membawa keceriaan luar biasa.</p>
+              <p>Semoga di lembaran usia yang baru ini, setiap langkahmu dipenuhi kebahagiaan, impianmu tercapai satu per satu, dan senyummu tetap bersinar terang!</p>
+            </div>
+          </div>
+          <p class="text-right text-teal-500 font-bold text-xs md:text-sm mt-4 animate-pulse">🔊 Listen closely... Deku is speaking!</p>
+        </div>
+
+        <!-- SISI KANAN: KARAKTER DEKU -->
+        <div class="w-56 md:w-72 flex items-center justify-center relative transform origin-left hover:scale-105 transition duration-500">
+          <!-- Aura Hijau OFA di belakang Deku -->
+          <div class="absolute w-52 h-52 bg-emerald-500/10 rounded-full blur-3xl"></div>
+          <!-- Pastikan gambar Deku ini sudah masuk remove.bg ya biar ga ada kotak caturnya! -->
+          <img src="assets/dekukue.png" class="w-full h-auto object-contain relative z-10 filter drop-shadow-[0_0_25px_rgba(34,197,94,0.4)] animate-[bounce_5s_ease-in-out_infinite]" alt="Deku">
+        </div>
+
+      </div>
+
     </div>
 
     <div id="transition-overlay" class="fixed inset-0 z-50 pointer-events-none hidden"></div>
