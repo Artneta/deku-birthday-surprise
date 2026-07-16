@@ -7,11 +7,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body class="bg-black text-slate-300 min-h-screen flex items-center justify-center p-6">
-    <div class="min-h-screen flex items-center justify-center p-4">
+  <body class="bg-black text-slate-300 min-h-screen flex items-center justify-center p-6 relative overflow-x-hidden">
+    
+    <div class="min-h-screen flex items-center justify-center p-4 w-full">
+      
       <!-- ==========================================
-         1. HALAMAN TERMINAL (INPUT NAMA)
-         ========================================== -->
+           1. HALAMAN TERMINAL (INPUT NAMA)
+           ========================================== -->
       <div id="terminal-page" class="w-full max-w-lg bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl transition-all duration-500 font-mono">
         <div class="flex items-center gap-2 mb-4 border-b border-slate-800 pb-3">
           <div class="w-3 h-3 rounded-full bg-red-500"></div>
@@ -40,14 +42,12 @@
       </div>
 
       <!-- ==========================================
-         2. LOADING SCREEN (DEKU LARI + PERCENTAGE)
-         ========================================== -->
+           2. LOADING SCREEN (DEKU LARI + PERCENTAGE)
+           ========================================== -->
       <div id="loading-page" class="hidden fixed inset-0 bg-slate-950 z-50 flex flex-col items-center justify-center font-mono p-4">
-        <!-- GIF Deku Lari (Nanti cari gif deku running/sprint) -->
         <div class="w-48 h-48 mb-4">
           <img src="assets/dekurun.gif" class="w-full h-full object-contain" alt="Deku Running" />
         </div>
-        <!-- Angka Persen Loading -->
         <div class="text-teal-400 text-4xl font-black mb-2 tracking-widest"><span id="load-pct">0</span>%</div>
         <div class="w-48 bg-slate-900 h-1.5 rounded-full overflow-hidden border border-slate-800">
           <div id="load-bar" class="bg-gradient-to-r from-teal-500 to-emerald-500 h-full w-0 transition-all duration-100"></div>
@@ -56,27 +56,23 @@
       </div>
 
       <!-- ==========================================
-         3. HALAMAN KURIR DEKU (DEKU BAWA SURAT TERTUTUP)
-         ========================================== -->
+           3. HALAMAN KURIR DEKU (DEKU BAWA SURAT TERTUTUP)
+           ========================================== -->
       <div id="courier-page" class="hidden opacity-0 fixed inset-0 bg-slate-950 z-40 flex flex-col items-center justify-center p-4 transition-all duration-1000">
         <div class="text-center mb-6">
           <h2 class="text-teal-400 text-xl font-mono animate-pulse">📩 YOU RECEIVED A TOP-SECRET LETTER!</h2>
           <p class="text-slate-500 text-xs mt-1">Click on the letter to open it</p>
         </div>
 
-        <!-- Deku besar memegang surat (Bisa di-klik) -->
         <div onclick="openFinalSurprise()" class="cursor-pointer group relative flex flex-col items-center max-w-sm transition transform hover:scale-105 duration-300">
-          <!-- Aura Petir tipis di belakang surat -->
           <div class="absolute inset-0 bg-teal-500/10 rounded-full blur-3xl group-hover:bg-teal-500/20 transition"></div>
-
-          <!-- Gambar Deku memegang surat -->
           <img src="assets/dekuletter.png" class="w-72 h-auto object-contain filter drop-shadow-[0_0_15px_rgba(20,184,166,0.3)] group-hover:drop-shadow-[0_0_25px_rgba(20,184,166,0.6)]" alt="Deku Mail" />
         </div>
       </div>
 
       <!-- ==========================================
-         4. PANGGUNG UTAMA (REVEAL PAGE - DARI SKETSA KELAR)
-         ========================================== -->
+           4. PANGGUNG UTAMA (REVEAL PAGE)
+           ========================================== -->
       <div id="reveal-page" class="hidden opacity-0 w-full max-w-6xl min-h-[80vh] flex flex-col justify-center items-center transition-opacity duration-1000 mx-auto px-4 relative">
         <div class="text-center mb-6 z-10">
           <h1 class="text-teal-400 text-4xl md:text-6xl font-black italic tracking-wider filter drop-shadow-[0_0_15px_rgba(20,184,166,0.6)] animate-pulse">PLUS ULTRA!</h1>
@@ -103,6 +99,38 @@
             <img src="assets/dekukue.png" class="w-full h-auto object-contain relative z-10 filter drop-shadow-[0_0_25px_rgba(34,197,94,0.4)]" alt="Deku" />
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         SPOTIFY PLAYER CONTAINER (Ditaruh Melayang)
+         ========================================== -->
+    <div id="music-player" class="hidden fixed bottom-6 right-6 w-64 bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-2xl z-50 select-none cursor-grab active:cursor-grabbing transition-opacity duration-500 opacity-0">
+      <div class="w-full aspect-square bg-slate-800 rounded-xl overflow-hidden mb-3 relative group">
+        <img id="player-cover" src="assets/dekuchibi.jpeg" class="w-full h-full object-cover" />
+        <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+          <span class="text-xs text-slate-400 font-mono">Drag to move</span>
+        </div>
+      </div>
+      <div class="mb-3">
+        <h4 id="player-title" class="text-white font-bold text-sm truncate">Hero Too (Acoustic)</h4>
+        <p id="player-artist" class="text-slate-400 text-xs truncate">My Hero Academia</p>
+      </div>
+      <div class="w-full bg-slate-800 h-1 rounded-full overflow-hidden mb-4">
+        <div id="player-progress" class="bg-teal-500 h-full w-0 transition-all duration-300"></div>
+      </div>
+      <div class="flex items-center justify-between px-4">
+        <button onclick="prevTrack()" class="text-slate-400 hover:text-teal-400 transition">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+        </button>
+        <button onclick="togglePlay()" class="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center hover:scale-105 transition shadow-lg">
+          <div id="play-icon">
+            <svg class="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </button>
+        <button onclick="nextTrack()" class="text-slate-400 hover:text-teal-400 transition">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6zm9-12v12h2V6z"/></svg>
+        </button>
       </div>
     </div>
 

@@ -14,7 +14,6 @@ let isPlaying = false;
 const dekuVoice = new Audio("assets/deku-voice.mp3");
 dekuVoice.volume = 0.9;
 
-// Silakan ganti teks ucapan bahasa inggris pilihanmu di bawah ini
 const birthdayText =
   "Happy Birthday, Mikaela! 💚\n\nJust like how I always strive to break past my limits with everything I've got, you’ve been an incredible hero in your own way, bringing so much light into the world!\n\nI hope this new year brings you endless happiness, and that all your biggest dreams come true. Keep smiling, and remember... Go beyond, Plus Ultra!";
 
@@ -22,6 +21,7 @@ let letterIndex = 0;
 const message = "> Terminal Initialized. Scanning network...";
 let i = 0;
 
+// 1. Efek Ketik Awal Terminal
 function typeWriter() {
   const typingElement = document.getElementById("typing-text");
 
@@ -44,12 +44,11 @@ function typeWriter() {
   }
 }
 
-// 2. Cek Validasi Nama Input (Biar personal!)
+// 2. Cek Validasi Nama Input
 function checkAccessName() {
   const inputVal = document.getElementById("user-name-input").value.trim().toLowerCase();
   const errorMsg = document.getElementById("error-msg");
 
-  // Web akan terbuka kalau dia ngetik "mikaela"
   if (inputVal === "mikaela") {
     errorMsg.classList.add("hidden");
     startLoadingScreen();
@@ -60,7 +59,7 @@ function checkAccessName() {
   }
 }
 
-// 3. Jalankan Loading Screen 0% - 100% Sinematik
+// 3. Jalankan Loading Screen 0% - 100%
 function startLoadingScreen() {
   document.getElementById("terminal-page").classList.add("hidden");
   const loadingPage = document.getElementById("loading-page");
@@ -73,7 +72,6 @@ function startLoadingScreen() {
   function frame() {
     if (currentPct >= 100) {
       clearInterval(int);
-      // Begitu 100%, pindah ke Halaman Kurir Deku Bawa Surat
       loadingPage.classList.add("hidden");
       const courierPage = document.getElementById("courier-page");
       courierPage.classList.remove("hidden");
@@ -81,13 +79,12 @@ function startLoadingScreen() {
         courierPage.classList.add("opacity-100");
       }, 50);
     } else {
-      currentPct += Math.floor(Math.random() * 4) + 1; // Naik acak biar dramatis
+      currentPct += Math.floor(Math.random() * 4) + 1;
       if (currentPct > 100) currentPct = 100;
       pctText.innerText = currentPct;
       bar.style.width = currentPct + "%";
     }
   }
-  // Kecepatan loading diatur acak agar terasa realistis
   const int = setInterval(frame, 60);
 }
 
@@ -100,13 +97,15 @@ function openFinalSurprise() {
 
   revealPage.classList.remove("hidden");
 
-  // Nyalakan Musik & Spotify Widget
-  loadTrack(currentTrackIndex);
-  togglePlay();
-  playerWidget.classList.remove("hidden");
-  setTimeout(() => {
-    playerWidget.style.opacity = "1";
-  }, 100);
+  // Nyalakan Musik & Spotify Widget jika elemennya ada
+  if (playerWidget) {
+    loadTrack(currentTrackIndex);
+    togglePlay();
+    playerWidget.classList.remove("hidden");
+    setTimeout(() => {
+      playerWidget.style.opacity = "1";
+    }, 100);
+  }
 
   // Nyalakan Suara Deku + Efek Ketik Papan Ucapan
   dekuVoice.play().catch((e) => console.log("Voice diblokir:", e));
@@ -120,6 +119,8 @@ function openFinalSurprise() {
 // Fungsi Efek Ketik Papan Surat
 function typeBirthdayLetter() {
   const targetElement = document.getElementById("birthday-letter");
+  if (!targetElement) return;
+
   if (letterIndex < birthdayText.length) {
     let char = birthdayText.charAt(letterIndex);
     if (char === "\n") {
@@ -137,21 +138,27 @@ function typeBirthdayLetter() {
 // ==========================================
 function loadTrack(index) {
   const track = playlist[index];
+  if (!track) return;
+
+  const titleEl = document.getElementById("player-title");
+  const artistEl = document.getElementById("player-artist");
+  const coverEl = document.getElementById("player-cover");
+
   currentAudio.src = track.src;
-  document.getElementById("player-title").innerText = track.title;
-  document.getElementById("player-artist").innerText = track.artist;
-  document.getElementById("player-cover").src = track.cover;
+  if (titleEl) titleEl.innerText = track.title;
+  if (artistEl) artistEl.innerText = track.artist;
+  if (coverEl) coverEl.src = track.cover;
 }
 
 function togglePlay() {
   const playIcon = document.getElementById("play-icon");
   if (isPlaying) {
     currentAudio.pause();
-    playIcon.innerHTML = `<svg class="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>`;
+    if (playIcon) playIcon.innerHTML = `<svg class="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>`;
     isPlaying = false;
   } else {
-    currentAudio.play().catch((e) => console.log(e));
-    playIcon.innerHTML = `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>`;
+    currentAudio.play().catch((e) => console.log("Audio play error:", e));
+    if (playIcon) playIcon.innerHTML = `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>`;
     isPlaying = true;
   }
 }
@@ -169,12 +176,15 @@ function prevTrack() {
 }
 
 currentAudio.addEventListener("timeupdate", () => {
-  const progress = (currentAudio.currentTime / currentAudio.duration) * 100;
-  document.getElementById("player-progress").style.width = `${progress}%`;
+  const progressBar = document.getElementById("player-progress");
+  if (progressBar) {
+    const progress = (currentAudio.currentTime / currentAudio.duration) * 100;
+    progressBar.style.width = `${progress}%`;
+  }
 });
 currentAudio.addEventListener("ended", nextTrack);
 
-// Sektor Drag Player (Anti-Loncat)
+// Sektor Drag Player (Dengan Pengaman Anti-Crash)
 const player = document.getElementById("music-player");
 let isDragging = false;
 let currentX = 0;
@@ -184,12 +194,14 @@ let initialY;
 let xOffset = 0;
 let yOffset = 0;
 
-player.addEventListener("mousedown", dragStart);
-document.addEventListener("mousemove", drag);
-document.addEventListener("mouseup", dragEnd);
-player.addEventListener("touchstart", dragStart, { passive: true });
-document.addEventListener("touchmove", drag, { passive: false });
-document.addEventListener("touchend", dragEnd);
+if (player) {
+  player.addEventListener("mousedown", dragStart);
+  document.addEventListener("mousemove", drag);
+  document.addEventListener("mouseup", dragEnd);
+  player.addEventListener("touchstart", dragStart, { passive: true });
+  document.addEventListener("touchmove", drag, { passive: false });
+  document.addEventListener("touchend", dragEnd);
+}
 
 function dragStart(e) {
   if (e.target.closest("button")) return;
@@ -199,7 +211,7 @@ function dragStart(e) {
 }
 
 function drag(e) {
-  if (!isDragging) return;
+  if (!isDragging || !player) return;
   if (e.type === "touchmove") e.preventDefault();
   currentX = e.type === "touchmove" ? e.touches[0].clientX - initialX : e.clientX - initialX;
   currentY = e.type === "touchmove" ? e.touches[0].clientY - initialY : e.clientY - initialY;
@@ -207,6 +219,7 @@ function drag(e) {
   yOffset = currentY;
   player.style.transform = `translate(${currentX}px, ${currentY}px)`;
 }
+
 function dragEnd() {
   initialX = currentX;
   initialY = currentY;
