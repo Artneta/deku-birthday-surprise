@@ -20,22 +20,27 @@ const birthdayText =
 
 let letterIndex = 0;
 const message = "> Terminal Initialized. Scanning network...";
-const typingElement = document.getElementById("typing-text");
 let i = 0;
 
-// 1. Efek Ketik Awal Terminal
 function typeWriter() {
+  const typingElement = document.getElementById("typing-text");
+
+  // Pengaman jika elemen belum ke-load
+  if (!typingElement) return;
+
   if (i < message.length) {
     typingElement.innerHTML += message.charAt(i);
     i++;
     setTimeout(typeWriter, 40);
   } else {
-    // Munculkan input nama secara smooth setelah teks beres
+    // Munculkan container input nama setelah mengetik selesai
     const inputContainer = document.getElementById("input-container");
-    inputContainer.classList.remove("hidden");
-    setTimeout(() => {
-      inputContainer.classList.add("opacity-100");
-    }, 50);
+    if (inputContainer) {
+      inputContainer.classList.remove("hidden");
+      setTimeout(() => {
+        inputContainer.classList.add("opacity-100");
+      }, 50);
+    }
   }
 }
 
